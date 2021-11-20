@@ -1,6 +1,4 @@
 ﻿@page "/new-bug"
-@inject IBugService BugService
-@inject NavigationManager NavService
 
 <h3>Add New Bug</h3>
 <EditForm Model="AddBug" OnValidSubmit="HandleValueSubmit">
@@ -12,7 +10,13 @@
 
 @code {
     public Bug AddBug { get; set; } = new Bug();
-    
+
+    [Inject]
+    public IBugService BugService;
+
+    [Inject]
+    public NavigationManager NavService;
+
     protected void HandleValueSubmit()
     {
         BugService.AddBug(AddBug);
